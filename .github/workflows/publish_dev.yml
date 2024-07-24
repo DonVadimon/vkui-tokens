@@ -15,7 +15,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --frozen-lockfile --ignore-scripts
       - name: Assigning new version
-        run: npm version prerelease --commit-hooks=false --git-tag-version=false --preid=dev-${GITHUB_SHA:0:6}
+        run: npm version prerelease --commit-hooks=false --git-tag-version=false --preid=${GITHUB_REF_NAME}-rc-${GITHUB_SHA:0:6}
       - name: Publishing release
         run: npm run publish:dev
         env:
